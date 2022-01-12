@@ -1,6 +1,9 @@
 function logger(req, res, next) {
   // DO YOUR MAGIC
-  console.log(req)
+  console.log(req.method)
+  console.log(req.url)
+  console.log(Date.now())
+  next()
 }
 
 function validateUserId(req, res, next) {
