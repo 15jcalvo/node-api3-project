@@ -14,7 +14,11 @@ const router = express.Router();
 
 router.get('/', logger, (req, res, next) => {
   // RETURN AN ARRAY WITH ALL THE USERS
-  next()
+  Users.get()
+    .then(users => {
+      res.status(200).json(users)
+    })
+    .catch(next)
 });
 
 router.get('/:id', logger, (req, res) => {
