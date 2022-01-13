@@ -16,7 +16,7 @@ async function validateUserId(req, res, next) {
       req.user = possibleUser
       next()
     } else {
-      next({ status: 404, message: `No User ${req.params.id}` })
+      next({ status: 404, message: "user not found" })
     }
   } catch (err) {
     next(err)
@@ -25,8 +25,8 @@ async function validateUserId(req, res, next) {
 
 function validateUser(req, res, next) {
   // DO YOUR MAGIC
-  if ( !req.body.id || !req.body.name) {
-    res.status(400).json({ message: "User requires id and name"})
+  if (!req.body.name) {
+    res.status(400).json({ message: "missing required name field"})
   } else {
     next()
   }
@@ -34,6 +34,11 @@ function validateUser(req, res, next) {
 
 function validatePost(req, res, next) {
   // DO YOUR MAGIC
+  if (!req.body.text) {
+    res.status(400).json({ message: "missing required text field" })
+  } else {
+    next()
+  }
 }
 
 // do not forget to expose these functions to other modules
